@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Standard · Đăng ký xuất hiện trên chương trình</title>
+<meta name="description" content="Form đăng ký dành cho Master GIVEHADA muốn xuất hiện trên chuỗi workshop The Standard quý 3 năm 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0A0A;
+  --bg-2:#111111;
+  --bg-3:#161616;
+  --line:rgba(255,255,255,0.10);
+  --line-2:rgba(255,255,255,0.18);
+  --text:#EDEAE2;
+  --text-mute:rgba(237,234,226,0.55);
+  --text-dim:rgba(237,234,226,0.40);
+  --accent:#D4B86A;
+  --accent-2:#B89752;
+  --cream:#F2EDE0;
+  --error:#E89B7A;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  font-weight:300;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  letter-spacing:-0.005em;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+  background:
+    radial-gradient(ellipse 800px 600px at 80% -10%, rgba(212,184,106,0.08), transparent 70%),
+    radial-gradient(ellipse 600px 800px at 10% 80%, rgba(212,184,106,0.05), transparent 70%);
+}
+.serif{font-family:'Instrument Serif',serif;font-weight:400}
+.wrap{max-width:780px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
+
+/* top bar */
+.top{
+  position:sticky;top:0;z-index:50;
+  background:rgba(10,10,10,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+  padding:18px 0;
+}
+.top-inner{display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:12px;letter-spacing:0.02em;max-width:780px;margin:0 auto;padding:0 32px}
+.brand-mark{font-family:'Instrument Serif',serif;font-size:1.3rem;font-weight:400;letter-spacing:-0.01em}
+.top-meta{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-mute);display:flex;align-items:center;gap:14px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+/* hero */
+.hero{padding:100px 0 60px}
+.hero-meta{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-mute);
+  margin-bottom:50px;
+}
+.hero h1{
+  font-family:'Instrument Serif',serif;font-weight:400;
+  font-size:clamp(3rem,7vw,5.4rem);line-height:0.95;letter-spacing:-0.025em;
+  margin-bottom:36px;
+}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero .sub{
+  font-family:'Instrument Serif',serif;font-size:clamp(1.3rem,2.2vw,1.7rem);
+  color:var(--text-mute);font-style:italic;font-weight:400;line-height:1.4;
+  max-width:54ch;
+}
+
+/* notice block */
+.notice{
+  margin:60px 0 80px;padding:36px 38px;
+  border:1px solid var(--line);background:var(--bg-2);
+  border-left:2px solid var(--accent);
+}
+.notice .lbl{font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.notice p{color:var(--text-mute);font-size:.98rem;line-height:1.7}
+.notice p + p{margin-top:12px}
+
+/* form */
+form{padding-bottom:120px}
+.section-tag{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin:80px 0 36px;padding-bottom:18px;border-bottom:1px solid var(--line);
+}
+.section-tag:first-of-type{margin-top:0}
+.section-tag .l{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-mute);display:flex;flex-direction:column;gap:8px}
+.section-tag .l h2{
+  font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3.4vw,2.6rem);
+  font-weight:400;letter-spacing:-0.02em;color:var(--text);text-transform:none;line-height:1.1;
+}
+.section-tag .l h2 em{font-style:italic;color:var(--accent)}
+.section-tag .r{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-mute)}
+
+.field{margin-bottom:32px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px}
+.field label,.field-row label{
+  display:block;
+  font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-mute);
+  margin-bottom:12px;font-weight:500;
+}
+.field label .req,.field-row label .req{color:var(--accent);margin-left:4px}
+.field label .hint,.field-row label .hint{
+  display:block;font-size:.78rem;letter-spacing:0.02em;text-transform:none;color:var(--text-dim);
+  font-weight:300;margin-top:4px;font-style:italic;font-family:'Instrument Serif',serif;
+}
+
+input[type="text"],input[type="email"],input[type="tel"],input[type="url"],input[type="number"],select,textarea{
+  width:100%;background:transparent;color:var(--text);
+  border:none;border-bottom:1px solid var(--line-2);
+  padding:14px 0;font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:400;
+  letter-spacing:-0.005em;transition:border-color .3s ease;outline:none;
+}
+input[type="text"]:focus,input[type="email"]:focus,input[type="tel"]:focus,input[type="url"]:focus,input[type="number"]:focus,select:focus,textarea:focus{
+  border-bottom-color:var(--accent);
+}
+input::placeholder,textarea::placeholder{color:var(--text-dim);font-weight:300}
+textarea{resize:vertical;min-height:100px;font-family:'Inter',sans-serif}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--accent) 50%),linear-gradient(135deg,var(--accent) 50%,transparent 50%);background-position:calc(100% - 18px) 22px,calc(100% - 12px) 22px;background-size:6px 6px;background-repeat:no-repeat;padding-right:36px;cursor:pointer}
+select option{background:var(--bg-2);color:var(--text)}
+
+/* radio group */
+.radio-group{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.radio-item{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:18px 22px;border:1px solid var(--line);background:var(--bg-2);
+  cursor:pointer;transition:all .3s ease;
+}
+.radio-item:hover{border-color:var(--line-2);background:var(--bg-3)}
+.radio-item input[type="radio"]{
+  appearance:none;width:18px;height:18px;border:1px solid var(--line-2);border-radius:50%;
+  flex-shrink:0;margin-top:3px;cursor:pointer;position:relative;transition:all .3s ease;
+}
+.radio-item input[type="radio"]:checked{border-color:var(--accent)}
+.radio-item input[type="radio"]:checked::after{
+  content:"";position:absolute;inset:3px;background:var(--accent);border-radius:50%;
+}
+.radio-item.selected{border-color:var(--accent);background:rgba(212,184,106,0.05)}
+.radio-item .ri-content{flex:1}
+.radio-item .ri-title{font-size:1rem;color:var(--text);font-weight:500;margin-bottom:4px;letter-spacing:-0.005em}
+.radio-item .ri-desc{font-size:.85rem;color:var(--text-mute);line-height:1.5;font-family:'Instrument Serif',serif;font-style:italic}
+
+/* checkbox */
+.checkbox-group{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.checkbox-item{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:14px 0;border-bottom:1px solid var(--line);
+  cursor:pointer;
+}
+.checkbox-item:last-child{border-bottom:none}
+.checkbox-item input[type="checkbox"]{
+  appearance:none;width:18px;height:18px;border:1px solid var(--line-2);
+  flex-shrink:0;margin-top:2px;cursor:pointer;position:relative;transition:all .3s ease;
+}
+.checkbox-item input[type="checkbox"]:checked{border-color:var(--accent);background:var(--accent)}
+.checkbox-item input[type="checkbox"]:checked::after{
+  content:"";position:absolute;left:5px;top:1px;width:6px;height:11px;
+  border:solid var(--bg);border-width:0 2px 2px 0;transform:rotate(45deg);
+}
+.checkbox-item label{font-size:.95rem;color:var(--text);cursor:pointer;letter-spacing:0;text-transform:none;margin:0;font-weight:400;flex:1;line-height:1.5}
+
+/* submit */
+.submit-wrap{margin-top:60px;padding-top:40px;border-top:1px solid var(--accent);text-align:center}
+button[type="submit"]{
+  display:inline-flex;align-items:center;justify-content:space-between;gap:24px;
+  background:var(--accent);color:var(--bg);
+  padding:24px 44px;border:1px solid var(--accent);cursor:pointer;
+  font-family:'Inter',sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.04em;
+  transition:all .3s ease;min-width:280px;
+}
+button[type="submit"]:hover{background:transparent;color:var(--accent);transform:translateX(8px)}
+button[type="submit"] .ar{font-family:'Instrument Serif',serif;font-size:1.5rem;font-style:italic;font-weight:400}
+.submit-note{margin-top:20px;font-size:.85rem;color:var(--text-mute);font-style:italic;font-family:'Instrument Serif',serif}
+
+/* success */
+.success{
+  display:none;text-align:center;padding:80px 30px;
+  border:1px solid var(--accent);background:var(--bg-2);
+  margin:60px 0;
+}
+.success.show{display:block}
+.success .icon{font-family:'Instrument Serif',serif;font-size:5rem;color:var(--accent);font-style:italic;line-height:1;margin-bottom:24px}
+.success h3{font-family:'Instrument Serif',serif;font-size:2.4rem;font-weight:400;margin-bottom:18px;letter-spacing:-0.02em}
+.success p{color:var(--text-mute);font-size:1.05rem;max-width:42ch;margin:0 auto;line-height:1.6}
+
+/* footer */
+footer{padding:60px 0 50px;border-top:1px solid var(--line);text-align:center}
+footer .b{font-family:'Instrument Serif',serif;font-size:1.5rem;letter-spacing:0.16em}
+footer .m{font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-mute);margin-top:8px}
+
+/* responsive */
+@media(max-width:640px){
+  .field-row{grid-template-columns:1fr;gap:0}
+  .field-row .field,.field-row > div{margin-bottom:32px}
+  button[type="submit"]{width:100%;min-width:auto}
+  .hero{padding:60px 0 40px}
+  .notice{padding:28px 24px;margin:40px 0 60px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="top-inner">
+    <div class="brand-mark">GIVEHADA</div>
+    <div class="top-meta"><span class="dot"></span><span>The Standard · Q3 · 2026</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-meta">
+      <div>Form đăng ký</div>
+      <div>Master GIVEHADA</div>
+    </div>
+    <h1>Đăng ký <em>xuất hiện</em><br>trên chương trình</h1>
+    <p class="sub">Dành cho Master muốn cùng GIVEHADA dẫn dắt chuỗi workshop The Standard quý 3 năm 2026.</p>
+  </header>
+
+  <!-- NOTICE -->
+  <div class="notice">
+    <div class="lbl">/ Trước khi điền</div>
+    <p>Form này dành cho Master GIVEHADA quan tâm xuất hiện trên chuỗi The Standard. Sau khi nhận hồ sơ, đội ngũ sẽ xét duyệt và phản hồi từng người trong vòng bảy ngày làm việc.</p>
+    <p>Việc xuất hiện trên chương trình không phải đặc quyền tự nhiên, mà là kết quả của một quá trình lựa chọn dựa trên hồ sơ Master cung cấp. Hãy điền chân thành và đầy đủ.</p>
+  </div>
+
+  <!-- FORM -->
+  <form id="registerForm" onsubmit="return submitForm(event)">
+
+    <!-- SECTION 01: Nhận diện -->
+    <div class="section-tag">
+      <div class="l">
+        <div>/ Phần 01</div>
+        <h2>Thông tin <em>nhận diện</em></h2>
+      </div>
+      <div class="r">© Master</div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Họ và tên<span class="req">*</span></label>
+        <input type="text" name="fullName" required placeholder="Nguyễn Văn A">
+      </div>
+      <div class="field">
+        <label>Năm sinh<span class="req">*</span></label>
+        <input type="number" name="birthYear" min="1950" max="2010" required placeholder="1990">
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Số điện thoại<span class="req">*</span></label>
+        <input type="tel" name="phone" required placeholder="0901 234 567">
+      </div>
+      <div class="field">
+        <label>Email<span class="req">*</span></label>
+        <input type="email" name="email" required placeholder="ban@email.com">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Tên spa hoặc cơ sở<span class="req">*</span></label>
+      <input type="text" name="spaName" required placeholder="Tên spa, clinic, hoặc thương hiệu cá nhân">
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Khu vực hoạt động<span class="req">*</span></label>
+        <input type="text" name="location" required placeholder="Tỉnh, thành phố">
+      </div>
+      <div class="field">
+        <label>Số năm làm nghề<span class="req">*</span></label>
+        <input type="number" name="experience" min="0" max="50" required placeholder="5">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Đã làm Master GIVEHADA bao lâu<span class="req">*</span>
+        <span class="hint">Tính từ thời điểm ký kết Master tới nay.</span>
+      </label>
+      <input type="text" name="masterDuration" required placeholder="Ví dụ: 8 tháng, 2 năm">
+    </div>
+
+    <!-- SECTION 02: Hồ sơ chuyên môn -->
+    <div class="section-tag">
+      <div class="l">
+        <div>/ Phần 02</div>
+        <h2>Hồ sơ <em>chuyên môn</em></h2>
+      </div>
+      <div class="r">© Nghề</div>
+    </div>
+
+    <div class="field">
+      <label>Thế mạnh chuyên môn<span class="req">*</span>
+        <span class="hint">Một hoặc hai câu mô tả lĩnh vực Master tự tin nhất.</span>
+      </label>
+      <textarea name="expertise" required placeholder="Ví dụ: Điều trị mụn viêm, chăm sóc da sau treatment, tư vấn liệu trình cá nhân hóa."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Quy mô spa hiện tại<span class="req">*</span></label>
+      <select name="spaSize" required>
+        <option value="">Chọn quy mô</option>
+        <option value="solo">Cá nhân, một mình vận hành</option>
+        <option value="small">Nhỏ, 2 đến 5 nhân sự</option>
+        <option value="medium">Vừa, 6 đến 15 nhân sự</option>
+        <option value="large">Lớn, trên 15 nhân sự</option>
+        <option value="chain">Chuỗi nhiều cơ sở</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Doanh thu trung bình mỗi tháng<span class="req">*</span>
+        <span class="hint">Thông tin chỉ dùng nội bộ để đánh giá hồ sơ.</span>
+      </label>
+      <select name="revenue" required>
+        <option value="">Chọn khoảng doanh thu</option>
+        <option value="under-50">Dưới 50 triệu</option>
+        <option value="50-100">50 đến 100 triệu</option>
+        <option value="100-200">100 đến 200 triệu</option>
+        <option value="200-500">200 đến 500 triệu</option>
+        <option value="over-500">Trên 500 triệu</option>
+      </select>
+    </div>
+
+    <!-- SECTION 03: Hiện diện -->
+    <div class="section-tag">
+      <div class="l">
+        <div>/ Phần 03</div>
+        <h2>Hiện diện <em>cá nhân</em></h2>
+      </div>
+      <div class="r">© Online</div>
+    </div>
+
+    <div class="field">
+      <label>Facebook cá nhân hoặc trang chính
+        <span class="hint">Nơi Master xuất hiện nhiều nhất với khách hàng.</span>
+      </label>
+      <input type="url" name="facebook" placeholder="https://facebook.com/...">
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>TikTok</label>
+        <input type="url" name="tiktok" placeholder="https://tiktok.com/@...">
+      </div>
+      <div class="field">
+        <label>Instagram</label>
+        <input type="url" name="instagram" placeholder="https://instagram.com/...">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Tổng người theo dõi trên kênh chính
+        <span class="hint">Con số ước lượng, không cần chính xác tuyệt đối.</span>
+      </label>
+      <select name="followers">
+        <option value="">Chọn khoảng</option>
+        <option value="under-1k">Dưới 1.000</option>
+        <option value="1k-5k">1.000 đến 5.000</option>
+        <option value="5k-20k">5.000 đến 20.000</option>
+        <option value="20k-50k">20.000 đến 50.000</option>
+        <option value="over-50k">Trên 50.000</option>
+      </select>
+    </div>
+
+    <!-- SECTION 04: Mong muốn -->
+    <div class="section-tag">
+      <div class="l">
+        <div>/ Phần 04</div>
+        <h2>Mong muốn <em>tham gia</em></h2>
+      </div>
+      <div class="r">© Tinh thần</div>
+    </div>
+
+    <div class="field">
+      <label>Vai trò Master muốn đảm nhận<span class="req">*</span>
+        <span class="hint">Có thể chọn một hoặc nhiều vai trò.</span>
+      </label>
+      <div class="checkbox-group">
+        <div class="checkbox-item">
+          <input type="checkbox" id="role1" name="roles" value="speaker">
+          <label for="role1">Chia sẻ case thực tế trong buổi workshop</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="role2" name="roles" value="cohost">
+          <label for="role2">Đồng dẫn dắt một buổi cùng đội ngũ</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="role3" name="roles" value="content">
+          <label for="role3">Xuất hiện trong podcast và bestcut</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="role4" name="roles" value="offline">
+          <label for="role4">Tham gia sự kiện offline với vai trò khách mời</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="role5" name="roles" value="solo">
+          <label for="role5">Đứng lớp dẫn dắt một workshop độc lập</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Chủ đề Master muốn chia sẻ<span class="req">*</span>
+        <span class="hint">Hai đến ba chủ đề Master cảm thấy mình có thể nói hay nhất.</span>
+      </label>
+      <textarea name="topics" required placeholder="Ví dụ: Cách tư vấn liệu trình cho khách lần đầu, hành trình từ spa nhỏ tới chuỗi, cách giữ khách quay lại sau ba tháng."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Lý do Master muốn xuất hiện trên The Standard<span class="req">*</span>
+        <span class="hint">Vài câu thẳng thắn về động lực cá nhân.</span>
+      </label>
+      <textarea name="motivation" required placeholder="Master mong nhận được gì, và mong đóng góp gì cho chương trình."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Thời gian Master có thể dành cho chương trình<span class="req">*</span></label>
+      <select name="commitment" required>
+        <option value="">Chọn mức cam kết</option>
+        <option value="event">Chỉ tham gia một sự kiện đơn lẻ</option>
+        <option value="batch">Tham gia một đợt (tháng 7-8 hoặc tháng 9)</option>
+        <option value="full">Đồng hành cả ba tháng Q3</option>
+        <option value="longterm">Sẵn sàng đồng hành dài hạn các quý sau</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Ghi chú thêm cho đội ngũ
+        <span class="hint">Bất cứ điều gì Master muốn đội ngũ biết khi xét hồ sơ.</span>
+      </label>
+      <textarea name="notes" placeholder="Để trống nếu không có"></textarea>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-wrap">
+      <button type="submit">
+        <span>Gửi đăng ký</span>
+        <span class="ar">→</span>
+      </button>
+      <div class="submit-note">Đội ngũ sẽ phản hồi trong vòng bảy ngày làm việc.</div>
+    </div>
+
+  </form>
+
+  <!-- SUCCESS -->
+  <div class="success" id="successBlock">
+    <div class="icon">✓</div>
+    <h3>Đã nhận hồ sơ của Master</h3>
+    <p>Cảm ơn Master đã dành thời gian. Đội ngũ The Standard sẽ xem xét hồ sơ và phản hồi trực tiếp qua email hoặc số điện thoại trong vòng bảy ngày làm việc.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="b">GIVEHADA</div>
+    <div class="m">The Standard · Quý 3 · 2026</div>
+  </div>
+</footer>
+
+<script>
+// Radio item visual selection
+document.querySelectorAll('.radio-item').forEach(item=>{
+  item.addEventListener('click',()=>{
+    const radio=item.querySelector('input[type="radio"]');
+    const name=radio.name;
+    document.querySelectorAll(`.radio-item input[name="${name}"]`).forEach(r=>{
+      r.closest('.radio-item').classList.remove('selected');
+    });
+    radio.checked=true;
+    item.classList.add('selected');
+  });
+});
+
+function submitForm(e){
+  e.preventDefault();
+  const form=document.getElementById('registerForm');
+  const data=new FormData(form);
+  const obj={};
+  for(const [k,v] of data.entries()){
+    if(obj[k]){
+      if(Array.isArray(obj[k])) obj[k].push(v);
+      else obj[k]=[obj[k],v];
+    } else obj[k]=v;
+  }
+  // Tạm thời log ra console. Khi tích hợp Formspree hoặc Google Sheets, thay phần này bằng fetch POST.
+  console.log('Form data:',obj);
+
+  form.style.display='none';
+  document.getElementById('successBlock').classList.add('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+  return false;
+}
+</script>
+</body>
+</html>
